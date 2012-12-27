@@ -1,4 +1,4 @@
-test: src/main.c
+test: src/adversaria.c
 	$(CC) $^ -std=c99 -o bin/advs
 
 run:
