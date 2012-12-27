@@ -8,7 +8,8 @@
 #define ADVERSARIA_H
 
 #define HEADER_SIZE 16 // 16 byte header
-#define MAX_ROWS 5
+#define MAX_ROWS 10
+#define ROW_SIZE 12
 
 typedef struct {
 	uint32_t timestamp;

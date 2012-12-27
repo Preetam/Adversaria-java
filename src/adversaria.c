@@ -26,32 +26,18 @@ void writeHeader(FILE *fp) {
 }
 
 void writeRowToFile(FILE *fp, int location, row r) {
-	char inBuffer[4] = {0};
-	char outBuffer[4] = {0};
-	fseek(fp, location*12+HEADER_SIZE, SEEK_SET);
-	memcpy(inBuffer, &(r.in), 4);
-	memcpy(outBuffer, &(r.out), 4);
-	fwrite(&(r.timestamp), 4, 1, fp);
-	fwrite(inBuffer, 4, 1, fp);
-	fwrite(outBuffer, 4, 1, fp);
+	char buffer[ROW_SIZE] = {0};
+	fseek(fp, location*ROW_SIZE+HEADER_SIZE, SEEK_SET);
+	memcpy(buffer, &r, ROW_SIZE);
+	fwrite(buffer, ROW_SIZE, 1, fp);
 }
 
 row readRowFromFile(FILE *fp, int location) {
-	char inBuffer[4] = {0};
-	char outBuffer[4] = {0};
-	uint32_t timestamp = 0;
-
-	fseek(fp, 12*location+HEADER_SIZE, SEEK_SET);
-	fread(&timestamp, 4, 1, fp);
-	fread(inBuffer, 4, 1, fp);
-	fread(outBuffer, 4, 1, fp);
-
-	float in = 0;
-	float out = 0;
-	memcpy(&in, inBuffer, 4);
-	memcpy(&out, outBuffer, 4);
-
-	row r = {timestamp, in, out};
+	row r;
+	char buffer[ROW_SIZE] = {0};
+	fseek(fp, ROW_SIZE*location+HEADER_SIZE, SEEK_SET);
+	fread(buffer, ROW_SIZE, 1, fp);
+	memcpy(&r, buffer, sizeof(r));
 	return r;
 };
 
@@ -65,7 +51,7 @@ void printData(FILE *fp) {
 	for(i = 0; i < MAX_ROWS; i++) {
 		row r = readRowFromFile(fp, i);
 		printf("[%d, %f, %f]", r.timestamp, r.in, r.out);
-		if(i != MAX_ROWS)
+		if(i < MAX_ROWS-1)
 			printf(",");
 	}
 	printf("]");
