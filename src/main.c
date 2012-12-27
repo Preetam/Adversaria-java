@@ -36,15 +36,16 @@ int main(void) {
 	fclose(fp);
 	
 	fp = fopen("db.advs", "rb");
-	for(i = 0; i < 10; i++) {
-		row r = readRowFromFile(fp, i);
-		printRow(r);
-	}
-/*
+//	for(i = 0; i < 10; i++) {
+//		row r = readRowFromFile(fp, i);
+//		printRow(r);
+//	}
+
 	for(i = 0; i < 100; i++) {
 		printf("[%d] => %f\n", i,readFloatFromFile(fp, i));
 	}
-*/
+
+	//printData(fp);
 	fclose(fp);
 
 	return EXIT_SUCCESS;
@@ -87,6 +88,18 @@ row readRowFromFile(FILE *fp, int location) {
 
 void printRow(row r) {
 	printf("[ %d, %f, %f ]\n", r.timestamp, r.in, r.out);
+}
+
+void printData(FILE *fp) {
+	int i;
+	printf("[");
+	for(i = 0; i < 26554; i++) {
+		row r = readRowFromFile(fp, i);
+		printf("[%d, %f, %f]", r.timestamp, r.in, r.out);
+		if(i != 26553)
+			printf(",");
+	}
+	printf("]");
 }
 
 void writeFloatToFile(FILE *fp, int nth, float val) {
