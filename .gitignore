@@ -2,3 +2,5 @@ db.advs
 bin/
 *.swp
 *.swo
+build/
+dist/
