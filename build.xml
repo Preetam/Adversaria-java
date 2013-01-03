@@ -23,7 +23,7 @@
   <target name="dist" depends="compile"
         description="generate the distribution" >
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-		<jar jarfile="${dist}/Adversaria-${DSTAMP}.jar" basedir="${build}">
+		<jar jarfile="${dist}/Adversaria.jar" basedir="${build}">
 			<manifest>
 				<attribute name="Main-Class" value="Adversaria" />
 			</manifest>
