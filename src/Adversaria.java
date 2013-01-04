@@ -50,7 +50,27 @@ public class Adversaria {
 		write(fileName, buf);
 	}
 
+	static advs_buffer range(String fileName, int start, int end) {
+		advs_buffer buf = open(fileName);
+		return buf.getRange(start, end);
+	}
+
+	static void printHelp() {
+		System.out.println("\nusage: java -jar adversaria.jar {function} {file} {data}");
+		System.out.println("\nFunctions:\n");
+		System.out.println("  create\tCreate a new storage file");
+		System.out.println("  insert\tInsert a new data point");
+		System.out.println("  export\tPrint as JSON");
+		System.out.println("  range\t\tRead a range of values");
+		System.out.println("");
+	}
+
 	public static void main(String[] args) {
+		if(args.length == 0) {
+			printHelp();
+			System.exit(0);
+		}
+
 		switch (args[0]) {
 			case "create": {
 				if(args.length > 1)
@@ -70,12 +90,13 @@ public class Adversaria {
 				break;
 			}
 
+			case "range": {
+				range(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3])).print();
+				break;
+			}
+
 			default: {
-				System.out.println("\nusage: java -jar adversaria.jar {function} {file} {data}");
-				System.out.println("\nFunctions:\n");
-				System.out.println("  create\tCreate a new storage file");
-				System.out.println("  insert\tInsert a new data point");
-				System.out.println("  export\tPrint as JSON\n");
+				printHelp();
 				break;
 			}
 		}
