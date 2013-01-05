@@ -6,6 +6,10 @@ public class Adversaria {
 
 	static void create(String fileName) {
 		advs_buffer buf = new advs_buffer(null, null);
+		float[] empty = {0f, 0f};
+		int i = 0;
+		for(i = 0; i < 40000; i++)
+			buf.put(i, empty);
 		write(fileName, buf);
 	}
 
@@ -95,11 +99,17 @@ public class Adversaria {
 				break;
 			}
 
+			case "size": {
+				System.out.println(open(args[1]).getSize());
+				break;
+			}
+
 			default: {
 				printHelp();
 				break;
 			}
 		}
+
 //		Runtime runtime = Runtime.getRuntime();
 //		System.out.println("Currently using " + runtime.totalMemory() / 1000000 + " MBytes of RAM.");
 	}

@@ -59,6 +59,9 @@ class advs_buffer implements java.io.Serializable {
 
 	public void put(int key, float[] val) {
 		primaryMap.put(key, val);
+
+		if(primaryMap.size() > 26280)
+			rebalance();
 	}
 
 	private SortedMap combineMaps(SortedMap a, SortedMap b) {
@@ -69,5 +72,27 @@ class advs_buffer implements java.io.Serializable {
 	public void combine(advs_buffer other) {
 		primaryMap = combineMaps(primaryMap, other.getPrimary());
 		secondaryMap = combineMaps(secondaryMap, other.getSecondary());
+	}
+
+	private void transferChunkToSecondary() {
+		int first = (Integer)primaryMap.firstKey();
+		int last = first + 3600;
+
+		secondaryMap.put(first, primaryMap.get(first));
+
+		primaryMap = primaryMap.tailMap(last);
+	}
+
+	public void rebalance() {
+		int primaryMax = 26280;
+		int secondaryMax = 6570;
+
+		while(primaryMap.size() > primaryMax) {
+			transferChunkToSecondary();
+		}
+
+		while(secondaryMap.size() > secondaryMax) {
+			secondaryMap.remove(secondaryMap.firstKey());
+		}
 	}
 }
