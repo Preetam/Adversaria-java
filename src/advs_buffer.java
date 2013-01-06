@@ -38,18 +38,13 @@ class advs_buffer implements java.io.Serializable {
 	}
 
 	public void print() {
+		SortedMap combined = combineMaps(secondaryMap, primaryMap);
+
 		System.out.println("\n{");
-		Iterator iterator = secondaryMap.keySet().iterator();
+		Iterator iterator = combined.keySet().iterator();
 		while(iterator.hasNext()) {
 			Object key = iterator.next();
-			System.out.print("\"" + key + "\"" + ":" + Arrays.toString((float[])(secondaryMap.get(key))));
-			if(iterator.hasNext())
-				System.out.println(",");
-		}
-		iterator = primaryMap.keySet().iterator();
-		while(iterator.hasNext()) {
-			Object key = iterator.next();
-			System.out.print("\"" + key + "\"" + ":" + Arrays.toString((float[])(primaryMap.get(key))));
+			System.out.print("\"" + key + "\"" + ":" + Arrays.toString((float[])(combined.get(key))));
 			if(iterator.hasNext())
 				System.out.println(",");
 		}

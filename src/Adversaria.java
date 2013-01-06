@@ -8,8 +8,9 @@ public class Adversaria {
 		advs_buffer buf = new advs_buffer(null, null);
 		float[] empty = {0f, 0f};
 		int i = 0;
-		for(i = 0; i < 40000; i++)
+		for(i = 0; i < 50000; i++) {
 			buf.put(i, empty);
+		}
 		write(fileName, buf);
 	}
 
