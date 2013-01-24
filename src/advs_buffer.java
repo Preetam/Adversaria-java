@@ -37,7 +37,7 @@ class advs_buffer implements java.io.Serializable {
 		return primaryMap.size() + secondaryMap.size();
 	}
 
-	public void print() {
+	public void printAll() {
 		SortedMap combined = combineMaps(secondaryMap, primaryMap);
 
 		System.out.println("\n{");
@@ -47,6 +47,30 @@ class advs_buffer implements java.io.Serializable {
 			System.out.print("\"" + key + "\"" + ":" + Arrays.toString((float[])(combined.get(key))));
 			if(iterator.hasNext())
 				System.out.println(",");
+		}
+
+		System.out.println("\n}");
+	}
+
+	public void print() {
+		SortedMap combined = combineMaps(secondaryMap, primaryMap);
+		int skip = combined.size()/250;
+		int tmp = 0;
+		System.out.println("\n{");
+		Iterator iterator = combined.keySet().iterator();
+		while(iterator.hasNext()) {
+			Object key = iterator.next();
+
+			if(tmp == 0) {
+				System.out.print("\"" + key + "\"" + ":" + Arrays.toString((float[])(combined.get(key))));
+				if(iterator.hasNext())
+					System.out.println(",");
+
+				tmp = skip;
+			}
+			else {
+				tmp--;
+			}
 		}
 
 		System.out.println("\n}");

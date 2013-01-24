@@ -9,7 +9,7 @@ public class Adversaria {
 		float[] empty = {0f, 0f};
 		int i = 0;
 		for(i = 0; i < 50000; i++) {
-			buf.put(i, empty);
+//			buf.put(i, empty);
 		}
 		write(fileName, buf);
 	}
@@ -66,6 +66,7 @@ public class Adversaria {
 		System.out.println("  create\tCreate a new storage file");
 		System.out.println("  insert\tInsert a new data point");
 		System.out.println("  export\tPrint as JSON");
+		System.out.println("  dump\tPrint all values as JSON");
 		System.out.println("  range\t\tRead a range of values");
 		System.out.println("");
 	}
@@ -93,6 +94,10 @@ public class Adversaria {
 			case "export": {
 				open(args[1]).print();
 				break;
+			}
+
+			case "dump": {
+				open(args[1]).printAll();
 			}
 
 			case "range": {
