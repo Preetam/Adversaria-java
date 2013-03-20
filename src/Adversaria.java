@@ -98,6 +98,7 @@ public class Adversaria {
 
 			case "dump": {
 				open(args[1]).printAll();
+				break;
 			}
 
 			case "range": {
