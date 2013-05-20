@@ -48,16 +48,22 @@ public class Adversaria {
 		return null;
 	}
 
-	static void insert(String fileName, int timestamp, float inBytes, float outBytes) {
+	static void insert(String fileName, int timestamp, float[] vals) {
 		advs_buffer buf = open(fileName);
-		float[] val = {inBytes, outBytes};
-		buf.put(timestamp, val);
+		buf.put(timestamp, vals);
 		write(fileName, buf);
 	}
 
 	static advs_buffer range(String fileName, int start, int end) {
 		advs_buffer buf = open(fileName);
 		return buf.getRange(start, end);
+	}
+
+	static float[] getFloats(String[] args) {
+		float[] val = new float[args.length];
+		for(int i = 0; i < args.length; i++)
+			val[i] = Float.parseFloat(args[i]);
+		return val;
 	}
 
 	static void printHelp() {
@@ -87,7 +93,7 @@ public class Adversaria {
 			}
 
 			case "insert": {
-				insert(args[1], Integer.parseInt(args[2]), Float.parseFloat(args[3]), Float.parseFloat(args[4]));
+				insert(args[1], Integer.parseInt(args[2]), getFloats(Arrays.copyOfRange(args, 3, args.length)));
 				break;
 			}
 
