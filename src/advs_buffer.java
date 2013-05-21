@@ -52,6 +52,7 @@ class advs_buffer implements java.io.Serializable {
 		System.out.println("\n}");
 	}
 
+	// TODO This is broken.
 	public void print() {
 		SortedMap combined = combineMaps(secondaryMap, primaryMap);
 		int skip = combined.size()/250;

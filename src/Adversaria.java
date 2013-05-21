@@ -67,14 +67,21 @@ public class Adversaria {
 	}
 
 	static void printHelp() {
-		System.out.println("\nusage: java -jar adversaria.jar {function} {file} {data}");
-		System.out.println("\nFunctions:\n");
-		System.out.println("  create\tCreate a new storage file");
-		System.out.println("  insert\tInsert a new data point");
-		System.out.println("  export\tPrint as JSON");
-		System.out.println("  dump\tPrint all values as JSON");
-		System.out.println("  range\t\tRead a range of values");
-		System.out.println("");
+		System.out.println("\nUsage: java -jar Adversaria.jar {function} {file} {args}\n\n"
+			+ "Functions:\n"
+			+ "  create\tCreate a new storage file\n"
+			+ "     java -jar Adversaria.jar create data.db\n\n"
+			+ "  insert\tInsert a new data point\n"
+			+ "     java -jar Adversaria.jar insert data.db 503 0.0\n\n"
+			+ "  export\tPrint as JSON\n"
+			+ "     java -jar Adversaria.jar export data.db 503\n\n"
+			+ "  dump\t\tPrint all values as JSON\n"
+			+ "     java -jar Adversaria.jar dump data.db\n\n"
+			+ "  range\t\tRead a range of values\n"
+			+ "     java -jar Adversaria.jar range data.db 0 503\n\n"
+			+ "  size\t\tPrint size\n"
+			+ "     java -jar Adversaria.jar size data.db\n\n"
+		);
 	}
 
 	public static void main(String[] args) {
@@ -98,7 +105,7 @@ public class Adversaria {
 			}
 
 			case "export": {
-				open(args[1]).print();
+				open(args[1]).printAll();
 				break;
 			}
 
@@ -108,7 +115,7 @@ public class Adversaria {
 			}
 
 			case "range": {
-				range(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3])).print();
+				range(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3])).printAll();
 				break;
 			}
 
