@@ -67,20 +67,20 @@ public class Adversaria {
 	}
 
 	static void printHelp() {
-		System.out.println("\nUsage: java -jar Adversaria.jar {function} {file} {args}\n\n"
+		System.out.println("\nUsage: adversaria [function] [file name] [[arguments]]\n\n"
 			+ "Functions:\n"
 			+ "  create\tCreate a new storage file\n"
-			+ "     java -jar Adversaria.jar create data.db\n\n"
+			+ "     adversaria create data.db\n\n"
 			+ "  insert\tInsert a new data point\n"
-			+ "     java -jar Adversaria.jar insert data.db 503 0.0\n\n"
+			+ "     adversaria insert data.db 503 0.0\n\n"
 			+ "  export\tPrint as JSON\n"
-			+ "     java -jar Adversaria.jar export data.db 503\n\n"
+			+ "     adversaria export data.db 503\n\n"
 			+ "  dump\t\tPrint all values as JSON\n"
-			+ "     java -jar Adversaria.jar dump data.db\n\n"
+			+ "     adversaria dump data.db\n\n"
 			+ "  range\t\tRead a range of values\n"
-			+ "     java -jar Adversaria.jar range data.db 0 503\n\n"
+			+ "     adversaria range data.db 0 503\n\n"
 			+ "  size\t\tPrint size\n"
-			+ "     java -jar Adversaria.jar size data.db\n\n"
+			+ "     adversaria size data.db\n\n"
 		);
 	}
 
