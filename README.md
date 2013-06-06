@@ -3,6 +3,11 @@ Adversaria
 
 Time-series logging that doesn't suck
 
+Requirements
+----
+* Java 1.7
+* ant
+
 Usage
 ----
 Build:
