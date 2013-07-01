@@ -105,7 +105,7 @@ public class Adversaria {
 			}
 
 			case "export": {
-				open(args[1]).printAll();
+				open(args[1]).print();
 				break;
 			}
 
@@ -115,7 +115,7 @@ public class Adversaria {
 			}
 
 			case "range": {
-				range(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3])).printAll();
+				range(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3])).print();
 				break;
 			}
 

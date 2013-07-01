@@ -52,25 +52,23 @@ class advs_buffer implements java.io.Serializable {
 		System.out.println("\n}");
 	}
 
-	// TODO This is broken.
 	public void print() {
 		SortedMap combined = combineMaps(secondaryMap, primaryMap);
-		int skip = combined.size()/250;
-		int tmp = 0;
+
+		int size = getSize();
+		int skip = (int)Math.floor(size/300);
 		System.out.println("\n{");
 		Iterator iterator = combined.keySet().iterator();
 		while(iterator.hasNext()) {
-			Object key = iterator.next();
-
-			if(tmp == 0) {
+			if(skip != 0) {
+				skip--;
+				iterator.next();
+			} else {
+				skip = (int)Math.floor(size/300);
+				Object key = iterator.next();
 				System.out.print("\"" + key + "\"" + ":" + Arrays.toString((float[])(combined.get(key))));
 				if(iterator.hasNext())
 					System.out.println(",");
-
-				tmp = skip;
-			}
-			else {
-				tmp--;
 			}
 		}
 
