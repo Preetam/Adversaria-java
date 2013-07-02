@@ -1,11 +1,12 @@
 Adversaria
 ==========
+[![Build Status](https://drone.io/github.com/PreetamJinka/Adversaria/status.png)](https://drone.io/github.com/PreetamJinka/Adversaria/latest)
 
 Time-series logging that doesn't suck
 
 Requirements
 ----
-* Java 1.7
+* Java 7
 * ant
 
 Usage
