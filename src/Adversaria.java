@@ -124,8 +124,5 @@ public class Adversaria {
 				break;
 			}
 		}
-
-//		Runtime runtime = Runtime.getRuntime();
-//		System.out.println("Currently using " + runtime.totalMemory() / 1000000 + " MBytes of RAM.");
 	}
 }
