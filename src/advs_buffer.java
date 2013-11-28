@@ -75,6 +75,41 @@ class advs_buffer implements java.io.Serializable {
 		System.out.println("\n}");
 	}
 
+	public void printAllTSV() {
+		SortedMap combined = combineMaps(secondaryMap, primaryMap);
+		Iterator iterator = combined.keySet().iterator();
+		while(iterator.hasNext()) {
+			Object key = iterator.next();
+			System.out.print(key);
+			for(float f: (float[])(combined.get(key))) {
+				System.out.print("\t"+f);
+			}
+			System.out.println();
+		}
+	}
+
+	public void printTSV() {
+		SortedMap combined = combineMaps(secondaryMap, primaryMap);
+
+		int size = getSize();
+		int skip = (int)Math.floor(size/300);
+		Iterator iterator = combined.keySet().iterator();
+		while(iterator.hasNext()) {
+			if(skip != 0) {
+				skip--;
+				iterator.next();
+			} else {
+				skip = (int)Math.floor(size/300);
+				Object key = iterator.next();
+				System.out.print(key);
+				for(float f: (float[])(combined.get(key))) {
+					System.out.print("\t"+f);
+				}
+				System.out.println();
+			}
+		}
+	}
+
 	public void put(int key, float[] val) {
 		primaryMap.put(key, val);
 

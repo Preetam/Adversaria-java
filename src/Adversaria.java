@@ -114,6 +114,21 @@ public class Adversaria {
 				break;
 			}
 
+			case "exportTSV": {
+				open(args[1]).printTSV();
+				break;
+			}
+
+			case "dumpTSV": {
+				open(args[1]).printAllTSV();
+				break;
+			}
+
+			case "rangeTSV": {
+				range(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3])).printTSV();
+				break;
+			}
+
 			case "size": {
 				System.out.println(open(args[1]).getSize());
 				break;
