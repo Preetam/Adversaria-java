@@ -49,6 +49,12 @@ public class Adversaria {
 		write(fileName, buf);
 	}
 
+	static void delete(String fileName, int timestamp) {
+		advs_buffer buf = open(fileName);
+		buf.delete(timestamp);
+		write(fileName, buf);
+	}
+
 	static advs_buffer range(String fileName, int start, int end) {
 		advs_buffer buf = open(fileName);
 		return buf.getRange(start, end);
@@ -68,6 +74,8 @@ public class Adversaria {
 			+ "     adversaria create data.db\n\n"
 			+ "  insert\tInsert a new data point\n"
 			+ "     adversaria insert data.db 503 0.0\n\n"
+			+ "  delete\tDelete a data point\n"
+			+ "     adversaria delete data.db 503\n\n"
 			+ "  export\tPrint as JSON\n"
 			+ "     adversaria export data.db 503\n\n"
 			+ "  dump\t\tPrint all values as JSON\n"
@@ -96,6 +104,11 @@ public class Adversaria {
 
 			case "insert": {
 				insert(args[1], Integer.parseInt(args[2]), getFloats(Arrays.copyOfRange(args, 3, args.length)));
+				break;
+			}
+
+			case "delete": {
+				delete(args[1], Integer.parseInt(args[2]));
 				break;
 			}
 
