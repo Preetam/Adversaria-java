@@ -117,6 +117,11 @@ class advs_buffer implements java.io.Serializable {
 			rebalance();
 	}
 
+	public void delete(int key) {
+		primaryMap.remove(key);
+		secondaryMap.remove(key);
+	}
+
 	private SortedMap combineMaps(SortedMap a, SortedMap b) {
 		a.putAll(b);
 		return a;
